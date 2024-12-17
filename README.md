@@ -2,7 +2,7 @@
 
 This is a forked version of the [v-calendar plugin](https://github.com/nathanreyes/v-calendar). We've addressed accessibility issues in the calendar by adding aria labels in a few places. There is an [open PR here](https://github.com/nathanreyes/v-calendar/pull/1507/files) to merge these updates back into the original repo. The last PR that was merged into the original repo was in October of 2023, so I'm not holding my breath on that.
 
-I wasn't able to figure out how the `lib` directory is built when a client runs `npm i --save v-calendar`. It didn't work out of the box. I tried doing it the proper way, by introducing a `prepare` script in package.json, but I never got it to work. So... I removed the `lib` line from `.gitignore` in the fork here and am just building the compiled lib code manually before pushing, tagging, and cutting a release. See below on how to do that if we need further updates:
+I wasn't able to figure out how the `lib` directory is built when a client runs `npm i --save v-calendar`. It didn't work out of the box. I tried doing it the proper way, by introducing a `prepare` script in package.json, but I never got it to work (the assets generated were too big, and npm rightly complained about that). So... I removed the `lib` line from `.gitignore` in the fork here and am just building the compiled lib code manually before pushing, tagging, and cutting a release. See below on how to do that if we need further updates:
 
 ```bash
 # INITIALIZE
