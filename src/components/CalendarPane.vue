@@ -20,9 +20,13 @@ export default {
         [
           // Header title
           h(
-            'div',
+            'button',
             {
               class: 'vc-title',
+              attrs: {
+                type: 'button',
+                'aria-label': `Select month and year. Current: ${this.page.title}`,
+              },
               on: this.navPopoverEvents,
             },
             [this.safeScopedSlot('header-title', this.page, this.page.title)],
@@ -245,8 +249,17 @@ export default {
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
   &:hover {
     opacity: 0.75;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--gray-800);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 

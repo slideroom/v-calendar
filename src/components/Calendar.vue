@@ -21,7 +21,6 @@ import {
   pageRangeToArray,
   createGuid,
   arrayHasItems,
-  onSpaceOrEnter,
 } from '../utils/helpers';
 import {
   isNumber,
@@ -78,10 +77,9 @@ export default {
     // Renderer for calendar arrows
     const getArrowButton = isPrev => {
       const click = () => this.move(isPrev ? -this.step_ : this.step_);
-      const keydown = e => onSpaceOrEnter(e, click);
       const isDisabled = isPrev ? !this.canMovePrev : !this.canMoveNext;
       return h(
-        'div',
+        'button',
         {
           class: [
             'vc-arrow',
@@ -89,12 +87,12 @@ export default {
             { 'is-disabled': isDisabled },
           ],
           attrs: {
-            'aria-label': `${isPrev ? 'Previous' : 'Next'}`,
-            role: 'button',
+            type: 'button',
+            'aria-label': isPrev ? 'Previous month' : 'Next month',
+            disabled: isDisabled
           },
           on: {
-            click,
-            keydown,
+            click
           },
         },
         [
@@ -841,6 +839,9 @@ export default {
   user-select: none;
   pointer-events: auto;
   color: var(--gray-600);
+  background: transparent;
+  padding: 0;
+  margin: 0;
   border-width: 2px;
   border-style: solid;
   border-radius: var(--rounded);
@@ -848,10 +849,11 @@ export default {
   &:hover {
     background: var(--gray-200);
   }
-  &:focus {
+  &:focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
     border-color: var(--gray-300);
   }
-
   &.is-disabled {
     opacity: 0.25;
     pointer-events: none;
